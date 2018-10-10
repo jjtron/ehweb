@@ -1,0 +1,61 @@
+<div *ngIf="cardDeck.length < 78" class="container" >
+	<img src="{{hostImages}}spinner.gif" width=50 />
+</div>
+<div id="work-container" class="container" *ngIf="cardDeck.length === 78" style="position: relative;">
+	<div style="padding: 5px;">
+		<span style="display: inline-block; vertical-align: middle;">
+			<img id="logo-image-tag" src="{{logoImage.src}}">
+		</span>
+		<span style="display: inline-block; vertical-align: middle;">
+			<div id="title-tag">Welcome to {{ title }}</div>
+		</span>
+	</div>
+	<div id="shuffle-pick-buttons" style="height: 39px;">
+			<h4 style="margin: 0px;">Shuffle cards (optional), pick three</h4>
+			<button style="width: 70px;" (click)="startShuffleProcess()" [disabled]="buttonsDisabled">Shuffle</button>
+			<button style="width: 70px;" (click)="setUpCardPickLayout()" [disabled]="buttonsDisabled">Pick</button>
+	</div>
+	<div id="svg-container">
+		<svg id="svg-element" width="100%">
+			<g id="g-center-static"></g>
+			<g id="g-center"></g>
+		</svg>
+	</div>
+
+	<div id="user-information">
+		<div style="display: flex; justify-content: space-evenly;">
+			<div *ngFor="let desc of cardDescriptions" style="text-align: left; padding: 0px 10px 0px 10px; font-size: 12px; width: 33%;">{{desc}}</div>
+		</div>
+		<!-- visible before question is posted -->
+		<div  *ngIf="!questionPosted" style="margin: auto; width: 100%;">
+			<div style="text-align: left; padding: 10px; clear: left;">
+		  		<span style="display: block;"><i>Optional:</i><br/>Pose question(s) and/or supply any information that you feel would help to analyze this card group.</span>
+		  		<textarea style="border: 1px solid #000000; width: 100%;" id="question" required rows="4" [(ngModel)]="question"></textarea>
+		  	</div>
+	  	</div>
+		<div *ngIf="!questionPosted" style="margin: auto; width: 100%;">
+			<div style="text-align: left; padding: 10px; clear: left;">
+		  		<span style="display: block;">Please enter your e-mail address.</span>
+		  		<input placeholder="email address" type="text" max="30" size="30" [(ngModel)]="email" class="input-outline" />
+		  	</div>
+			<div style="text-align: left; padding: 10px; clear: left;">
+		  		<button *ngIf="!questionPosted" (click)="setEmail()" [disabled]="!email">Submit your request</button>
+		  	</div>
+	  	</div>
+		<!-- visible after question is posted -->
+		<div *ngIf="questionPosted && question" style="margin: auto; width: 100%;">
+			<div style="text-align: left; padding: 10px; clear: left;">
+		  		<span style="display: block;">Your question ...</span>
+		  		<textarea disabled style="border: 1px solid #000000; width: 100%;" id="question" required rows="4" [(ngModel)]="question"></textarea>
+		  	</div>
+	  	</div>
+		<div *ngIf="questionPosted" style="margin: auto; width: 100%;">
+			<div style="text-align: left; padding: 10px; clear: left;">
+		  		<span style="display: block;">You will be contacted by this e-mail address.</span>
+		  		<input disabled type="text" max="30" size="30" [(ngModel)]="email" class="input-outline" />
+		  	</div>
+	  	</div>
+	  	<div *ngIf="questionPosted" ><h3>Your request has been posted with the information above. You will receive a response within 24 hrs.</h3></div>
+  	</div>
+</div>
+

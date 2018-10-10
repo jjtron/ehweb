@@ -1,0 +1,35 @@
+<div class="container">
+	<div>
+		<span *ngIf="nLoadedImages === 3" style="display: inline-block; vertical-align: middle;">
+			<img src="{{logoImage.src}}" width="60px">
+		</span>
+		<span style="display: inline-block; vertical-align: middle;">
+			<h1>{{ title }} Administration</h1>
+		</span>
+	</div>
+	<div class="container-cntr" *ngIf="nLoadedImages < 3">
+		<img src="{{hostImages}}spinner.gif" width=100 />
+	</div>
+	<div class="container-cntr" *ngIf="nLoadedImages === 3">
+			<div *ngFor="let image of newImages" class="card-info-div">
+				<div style="text-align: left; clear: left;">
+					<img style="float: left; margin-right: 5px;" src="{{image.src}}" width=100 />
+					<div style="vertical-align: top;">{{image.desc}}</div>
+				</div>
+			</div>
+			<div style="text-align: left; padding: 1%; clear: left;">
+				<span>Optional additional information and/or question(s).</span>
+				<textarea disabled autofocus style="width: 100%;" id="question" required rows="4" >{{question}}</textarea>
+			</div>
+			<div style="text-align: left; padding: 1%; clear: left;">
+				<span style="display: block;">Email address</span>
+				<input disabled type="text" max="30" size="30" value={{email}} class="input-outline" />
+			</div>
+			<div style="text-align: left; padding: 1%; clear: left;">
+			<span>Answer/Analysis</span>
+	  			<textarea style="width: 100%;" id="answer" required rows="4" [(ngModel)]="answer"></textarea>
+	  			<button (click)="setAnswer()" [disabled]="answer.length < 3">Post Answer</button>
+	  		</div>
+		  	<div *ngIf="answerPosted" ><h3>Your answer has been posted in response to the information above. The client has been notified.</h3></div>
+	</div>
+</div>

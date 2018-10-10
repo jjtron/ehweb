@@ -1,0 +1,66 @@
+.container {
+	text-align:center; width: 60%; margin: auto;
+}
+
+.card-info-div {
+	margin: auto; width: 31%; padding: 1%; float: left;
+}
+	
+.container-cntr {
+	width: 100%; margin: auto;
+}
+
+.input-outline {
+	outline: none;
+}
+
+@media (max-width: 1023px) {
+	.container {
+		text-align:center; width: 100%; margin: auto;
+	}
+	.card-info-div {
+		margin: auto; width: 100%; padding: 5px;
+	}
+	.input-outline {
+		outline: 1px solid black;
+	}
+}
+
+#logo-image-tag {
+	width: 60px;
+}
+
+#title-tag {
+	margin: 0px;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+#card-pick-container {
+	position: absolute; top: 120px; left: 0px; opacity: 0; width: 100%;
+}
+
+#shuffle-pick-buttons { height: 40px; padding: 5px; transition: height 1s; }
+
+@media (max-width: 451px) {
+	#card-pick-container {
+		top: 180px;
+	}
+	#logo-image-tag {
+		width: 40px;
+	}
+	#title-tag {
+		margin: 0px;
+		font-size: 16px;
+		font-weight: 700;
+	}
+}
+
+#user-information {
+	opacity: 0;
+}
+
+body { background-color: #0000ff; }
+div { color: white; }
+button { background-color: #ffffff; }
+
