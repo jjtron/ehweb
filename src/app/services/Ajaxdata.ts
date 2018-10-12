@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { timeout } from 'rxjs/operators'; 
 
 @Injectable()
@@ -18,43 +18,44 @@ export class Ajaxdata {
     }
 
     getCardGroup (): any {
-        let headers = this.getHeaders ();
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            })
+        };
         return this.http.post(
-            this.href + 'php/getCardGroup.php',
-            { headers: headers }
+            this.href + 'php/getCardGroup.php', null, httpOptions
         );
     }
 
     setEmail (email: string, cards: any, question: string): any {
-        let headers = this.getHeaders ();
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            })
+        };
         let jsoncards = JSON.stringify(cards);
         return this.http.post(
             this.href + 'php/setEmail.php', `href=${this.href}&email=${email}&cards=${jsoncards}&question=${question}`,
-            { headers: headers }
+            httpOptions
         );
     }
 
     setAnswer (answer: string, id: number, email: string): any {
-        let headers = this.getHeaders ();
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            })
+        };
         return this.http.post(
             this.href + 'php/setAnswer.php', `answer=${answer}&id=${id}&email=${email}&href=${this.href}`,
-            { headers: headers }
+            httpOptions
         );
     }
 
     getCardsQuestion (id: number): any {
-        let headers = this.getHeaders ();
-        return this.http.post(
-            this.href + 'php/getCardsQuestion.php', `id=${id}`,
-            { headers: headers }
+        return this.http.get(
+            this.href + `php/getCardsQuestion.php?id=${id}`
         );
-    }
-
-    getHeaders (): any {
-        let headers: any = new Headers();
-        headers.append('Accept', '*/*');
-        headers.append('Content-Type',
-                       'application/x-www-form-urlencoded; charset=UTF-8');
-        return headers;
     }
 }

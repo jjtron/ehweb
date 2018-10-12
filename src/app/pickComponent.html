@@ -12,16 +12,16 @@
 	</div>
 	<div id="shuffle-pick-buttons" style="height: 39px;">
 			<h4 style="margin: 0px;">Shuffle cards (optional), pick three</h4>
-			<button style="width: 70px;" (click)="startShuffleProcess()" [disabled]="buttonsDisabled">Shuffle</button>
+			<button style="width: 70px;" (click)="startShuffleProcess()" [disabled]="buttonsDisabled">Shuffle</button>&nbsp;&nbsp;
 			<button style="width: 70px;" (click)="setUpCardPickLayout()" [disabled]="buttonsDisabled">Pick</button>
 	</div>
 	<div id="svg-container">
 		<svg id="svg-element" width="100%">
 			<g id="g-center-static"></g>
 			<g id="g-center"></g>
+			<g id="g-text-arc"></g>
 		</svg>
 	</div>
-
 	<div id="user-information">
 		<div style="display: flex; justify-content: space-evenly;">
 			<div *ngFor="let desc of cardDescriptions" style="text-align: left; padding: 0px 10px 0px 10px; font-size: 12px; width: 33%;">{{desc}}</div>

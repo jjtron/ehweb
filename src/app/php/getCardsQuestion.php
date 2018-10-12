@@ -2,7 +2,7 @@
 
 require 'pdo.php';
 
-$query = "SELECT * FROM `records` WHERE id='" . $_POST['id'] . "'";
+$query = "SELECT * FROM `records` WHERE id='" . $_GET['id'] . "'";
 
 $obj = (object) array();
 foreach ($conn->query($query) as $row) {

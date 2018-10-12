@@ -16,6 +16,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
+            "baseHref" : "/dist/",
+            "deployUrl": "/dist/",
             "assets": [
               {
                 "glob": "favicon.ico",
@@ -31,6 +33,9 @@
             "styles": [
               {
                 "input": "src/style.css"
+              },
+              {
+                "input": "src/styles.css"
               }
             ],
             "scripts": []
