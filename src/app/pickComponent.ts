@@ -254,7 +254,7 @@ export class PickComponent implements AfterViewChecked {
                 c.setAttribute('transform', 'translate(' + ((4 - n) / 5 * x) + ', ' + ((4 - n) / 5 * y) + '), rotate(' + n * 54 + ', ' + '0' + ', 0)');
                 n++;
                 if (n > 4) {
-                    c.remove();
+                    c.parentNode.removeChild(c);
                     repeatCount++;
                     requestAnimationFrame(loop78);
                     d3.select('#textArcText').text('');
@@ -313,8 +313,9 @@ export class PickComponent implements AfterViewChecked {
                     newCard.setAttribute('y', 0);
                     newCard.setAttribute('id', 'c' + k);
                     newCard.setAttribute('opacity', '1');
+                    newCard.setAttribute('style', 'cursor: pointer;');
                     let cardId = k;
-                    d3.select('#c' + k).on('click', () => { this.pickCard(cardId); })
+                    newCard.addEventListener('click', () => { this.pickCard(cardId); });
                     if (k % nCardsPerRow === 0) { j = 0; }
                     let dx = -cw/2 + ((cw - nCardsPerRow * this.cardWidth_2/(nCardsPerRow - 1) * cssf)/(nCardsPerRow - 1)) * j++;
                     let dy = this.cardHeight_2/2 * cssf;
@@ -324,7 +325,9 @@ export class PickComponent implements AfterViewChecked {
                     if (++k === nCards) {
                         clearInterval(spreadCards);
                         this.svgElement.setAttribute('height', 650);
-                        d3.select('#centerRect').remove();
+                        let cntrRct = d3.select('#centerRect');
+                        let cntrRctParent = d3.select('#centerRect').parentNode;
+                        cntrRctParent.removeChild(cntrRct);
                     }
                 }, 15);
             });
@@ -363,7 +366,7 @@ export class PickComponent implements AfterViewChecked {
                 if (this.cardPick === 3) {
                     for (let k = 0; k <= 78; k++) {
                         let c = d3.select('#c' + k).node();
-                        if (c) {c.remove();}
+                        if (c) {c.parentNode.removeChild(c);}
                     }
                     d3.select('#g-center-static')
                         .transition()
