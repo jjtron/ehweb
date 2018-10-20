@@ -10,11 +10,15 @@
 			<div id="title-tag">Welcome to {{ title }}</div>
 		</span>
 	</div>
-	<div id="shuffle-pick-buttons" style="height: 39px;">
+	<div *ngIf="!cardShuffleInProgress" id="shuffle-pick-buttons" style="height: 39px;">
 			<h4 style="margin: 0px;">Shuffle cards (optional), pick three</h4>
 			<button style="width: 70px;" (click)="startShuffleProcess()" [disabled]="buttonsDisabled">Shuffle</button>&nbsp;&nbsp;
 			<button style="width: 70px;" (click)="setUpCardPickLayout()" [disabled]="buttonsDisabled">Pick</button>
 	</div>
+	<div *ngIf="cardShuffleInProgress" style="height: 39px; padding: 5px; color: #eeeeee;">
+		<h4>Card shuffle in progress, please wait ...</h4>
+	</div>
+	
 	<div id="svg-container">
 		<svg id="svg-element" width="100%">
 			<g id="g-center-static"></g>

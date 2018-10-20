@@ -19,6 +19,7 @@ export class PickComponent implements AfterViewChecked {
     cardPick: number = 0;
     cardPickScale: number;
     cardSpreadSizeFactor: number;
+    cardShuffleInProgress: boolean = false;
     cardWidth: number;
     cardWidth_2: number = 16;
     cardShuffleHeight: number;
@@ -176,6 +177,7 @@ export class PickComponent implements AfterViewChecked {
         this.rnd0to77 = this.shuffle(ra);
 
         this.buttonsDisabled = true;
+        this.cardShuffleInProgress = true;
         let repeatCount = 0;
         let f = (1 / 78) * 360;
         
@@ -231,7 +233,9 @@ export class PickComponent implements AfterViewChecked {
         let f = (1 / 78) * 360;
         let loop78 = () => {
             if (repeatCount > 77) {
+                d3.select('#textArcText').text('');
                 this.buttonsDisabled = false;
+                this.cardShuffleInProgress = false;
                 d3.select('#spiral').transition().duration(750).attr('transform', 'scale(0)').on('end', () => {
                     d3.select('#centerRect').transition().duration(750).attr('transform', 'scale(8)');
                 });
@@ -243,7 +247,9 @@ export class PickComponent implements AfterViewChecked {
                     ', ' + ((this.cardShuffleHeight + this.cardHeight)/2  - this.textArcRadius / 2) +
                     '), rotate(' + (this.rotateStop + (- 3 * repeatCount)) + ',' + 
                     this.textArcRadius/2 + ',' + this.textArcRadius/2 + ')');
-            d3.select('#textArcText').text('arises a new order.');
+            if (d3.select('#textArcText').text() !== 'arises a new order.') {
+                d3.select('#textArcText').text('arises a new order.');
+            }
             this.spiral.setAttribute('transform', 'rotate(' + 20 * (78 - repeatCount) + ')');
             let degrees = f * (repeatCount);
             let y =  this.cardShuffleHeight * Math.sin(2 * Math.PI / 360 * degrees);
@@ -257,7 +263,6 @@ export class PickComponent implements AfterViewChecked {
                     c.parentNode.removeChild(c);
                     repeatCount++;
                     requestAnimationFrame(loop78);
-                    d3.select('#textArcText').text('');
                     return;
                 }
                 requestAnimationFrame(restackCard);
