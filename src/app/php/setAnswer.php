@@ -14,11 +14,13 @@ try {
 	$stmt->execute();
 } catch (Exception $e) {
 	$msg = $e->getMessage();
-	echo $msg;
+	$resp = (object) array("success" => false, "msg" => $msg);
+	$respJSON = json_encode($resp);
 	return;
 }
 
-$msg = "The record is updated with the answer";
+$resp = (object) array("success" => true);
+$respJSON = json_encode($resp);
 
 $messageBody  = 'Tha answer to your card reading request is ready.' . PHP_EOL . PHP_EOL;
 $messageBody .= 'Click on the following link to get it.' . PHP_EOL . PHP_EOL;
@@ -31,6 +33,6 @@ mail(
 	'From: webmaster@jjtron.com'
 );
 
-echo $msg;
+echo $respJSON;
 
 ?>

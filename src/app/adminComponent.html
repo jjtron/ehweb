@@ -31,5 +31,6 @@
 	  			<button (click)="setAnswer()" [disabled]="answer.length < 3">Post Answer</button>
 	  		</div>
 		  	<div *ngIf="answerPosted" ><h3>Your answer has been posted in response to the information above. The client has been notified.</h3></div>
+		  	<div *ngIf="problemOnPost" ><h3>{{problem}}</h3></div>
 	</div>
 </div>

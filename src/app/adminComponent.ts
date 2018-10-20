@@ -24,6 +24,8 @@ export class AdminComponent {
     newImages: any[] = [];
     nLoadedImages: number = 0;
     logoImage: any;
+    problemOnPost: boolean = false;
+    problem: string;
 
     constructor (private ajaxData: Ajaxdata, private route: ActivatedRoute) {
         this.href = ajaxData.href;
@@ -54,8 +56,11 @@ export class AdminComponent {
     
     setAnswer () {
         this.ajaxData.setAnswer(this.answer, this.id, this.email).subscribe((resp: any) => {
-            if (true) {
+            if (resp.success) {
                 this.answerPosted = true;
+            } else {
+                this.problemOnPost = true;
+                this.problem = resp.msg;
             }
         });
     }
