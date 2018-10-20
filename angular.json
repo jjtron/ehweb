@@ -33,9 +33,6 @@
             "styles": [
               {
                 "input": "src/style.css"
-              },
-              {
-                "input": "src/styles.css"
               }
             ],
             "scripts": []
