@@ -24,7 +24,7 @@ $respJSON = json_encode($resp);
 
 $messageBody  = 'Tha answer to your card reading request is ready.' . PHP_EOL . PHP_EOL;
 $messageBody .= 'Click on the following link to get it.' . PHP_EOL . PHP_EOL;
-$messageBody .= $href . 'php/ehbuy.php?id=' . $id;
+$messageBody .= $href . 'php/pay-pal.php?id=' . $id;
 
 mail(
 	$email,
