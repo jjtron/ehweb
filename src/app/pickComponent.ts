@@ -330,8 +330,8 @@ export class PickComponent implements AfterViewChecked {
                     if (++k === nCards) {
                         clearInterval(spreadCards);
                         this.svgElement.setAttribute('height', 650);
-                        let cntrRct = d3.select('#centerRect');
-                        let cntrRctParent = d3.select('#centerRect').parentNode;
+                        let cntrRct = document.getElementById('centerRect');
+                        let cntrRctParent = cntrRct.parentNode;
                         cntrRctParent.removeChild(cntrRct);
                     }
                 }, 15);
