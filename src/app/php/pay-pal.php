@@ -1,7 +1,9 @@
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-	<title>Psychic Tarot Pay Pal</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+	<title>Psychic Cosmic Tarot Pay Pal</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body style="background-color: #00f;">
     
@@ -26,6 +28,7 @@
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="YJ328MCK8NGRU">
+        <input type="hidden" name="custom" value="CUSTOM_VALUE_000">
         <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
         </form>
