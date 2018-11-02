@@ -11,7 +11,7 @@
 
     <div class="text-center" style="padding: 20px; color: #fff;">
         <span style="display: inline-block; vertical-align: middle;">
-            <img id="logo-image-tag" src="https://www.jjtron.com/dist/assets/Logo.png" width="100">
+            <img id="logo-image-tag" src="../assets/Logo.png" width="100">
         </span>
         <span style="display: inline-block; vertical-align: middle;">
             <div style="font-size: 30px;" id="title-tag">Psychic Cosmic Tarot Pay-Pal Entry</div>
