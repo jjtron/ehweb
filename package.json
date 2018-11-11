@@ -7,7 +7,7 @@
     "lint": "tslint ./src/**/*.ts -t verbose",
     "start": "ng serve",
     "test": "ng test",
-    "build": "ng build --prod",
+    "build": "ng build --prod && cp .htaccess dist/ && cp shim.min.js dist/ && cp shim.min.js.map dist/ && rm dist/3rdpartylicenses.txt",
     "e2e": "ng e2e",
     "ng": "ng"
   },

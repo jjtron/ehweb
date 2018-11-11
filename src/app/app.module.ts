@@ -7,12 +7,13 @@ import { AdminComponent } from './adminComponent';
 import { PickComponent } from './pickComponent';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pick', pathMatch: 'full' },
     { path: 'admin', component: AdminComponent },
-    { path: 'pick', component: PickComponent }
+    { path: 'pick', component: PickComponent },
+    { path: 'pick/:id', component: PickComponent }
 ];
 export const appRoutingProviders: any[] = [];
 
@@ -29,7 +30,7 @@ export const appRoutingProviders: any[] = [];
     RouterModule.forRoot(routes)
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: APP_BASE_HREF, useValue: '/dist'},
     Ajaxdata,
     appRoutingProviders
   ],

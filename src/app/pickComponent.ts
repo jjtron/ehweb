@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { Ajaxdata } from './services/Ajaxdata';
 import * as d3 from 'd3';
@@ -44,8 +45,9 @@ export class PickComponent implements AfterViewChecked {
     textArcRadius: number;
     userPicks: string[] = [];
     rotateStop: number;
+    psychicId: string;
 
-    constructor(private ajaxData: Ajaxdata) {
+    constructor(private ajaxData: Ajaxdata, route: ActivatedRoute) {
         this.href = ajaxData.href;
         this.hostImages = 'assets/';
         this.logoImage = new Image();
@@ -61,6 +63,9 @@ export class PickComponent implements AfterViewChecked {
         this.cardUrlArray = this.getCardUrlArray();
         this.cardPickScale = (window.innerWidth > 451) ? 8 : 6;
         this.cardSpreadSizeFactor = this.cardPickScale / 4.6;
+        route.params.subscribe((params) => {
+            this.psychicId = params.id || '000';
+        });
     }
 
     ngAfterViewChecked() {
@@ -400,7 +405,7 @@ export class PickComponent implements AfterViewChecked {
     }
 
     setEmail () {
-        this.ajaxData.setEmail(this.email, this.userPicks, this.question).subscribe((resp: any) => {
+        this.ajaxData.setEmail(this.email, this.userPicks, this.question, this.psychicId).subscribe((resp: any) => {
             if (true) {
                 this.questionPosted = true;
             }

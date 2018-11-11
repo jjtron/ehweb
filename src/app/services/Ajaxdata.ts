@@ -11,7 +11,7 @@ export class Ajaxdata {
 
     constructor(private http: HttpClient) {
         if (window.location.port === '') {
-            this.href = window.location.href.replace(/#\/.*$/, '');
+            this.href = window.location.href.replace(/(pick|admin).*$/, '');
         } else {
             this.href = window.location.protocol + '//' + window.location.hostname + '/';
         }
@@ -28,7 +28,7 @@ export class Ajaxdata {
         );
     }
 
-    setEmail (email: string, cards: any, question: string): any {
+    setEmail (email: string, cards: any, question: string, psychicid): any {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -36,7 +36,7 @@ export class Ajaxdata {
         };
         let jsoncards = JSON.stringify(cards);
         return this.http.post(
-            this.href + 'php/setEmail.php', `href=${this.href}&email=${email}&cards=${jsoncards}&question=${question}`,
+            this.href + 'php/setEmail.php', `href=${this.href}&email=${email}&cards=${jsoncards}&question=${question}&psychicid=${psychicid}`,
             httpOptions
         );
     }
