@@ -13,7 +13,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'pick', pathMatch: 'full' },
     { path: 'admin', component: AdminComponent },
     { path: 'pick', component: PickComponent },
-    { path: 'pick/:id', component: PickComponent }
+    { path: 'pick/:psychicid', component: PickComponent }
 ];
 export const appRoutingProviders: any[] = [];
 

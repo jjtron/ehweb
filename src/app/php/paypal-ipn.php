@@ -3,19 +3,16 @@
 require('PaypalIPN.php');
 use PaypalIPN;
 $ipn = new PaypalIPN();
-
 // Use the sandbox endpoint during testing.
 $ipn->useSandbox();
-
 $verified = $ipn->verifyIPN();
 
 if ($verified) {
     file_put_contents(dirname(__FILE__).'/test.txt', 'paypal ipn verified' . PHP_EOL, FILE_APPEND);
-    /*
-     * Process IPN
-     * A list of variables is available here:
-     * https://developer.paypal.com/webapps/developer/docs/classic/ipn/integration-guide/IPNandPDTVariables/
-     */
+    foreach ($_POST as $key => $value) {
+        file_put_contents(dirname(__FILE__).'/test.txt', $key . ' - ' . $value . PHP_EOL, FILE_APPEND);
+    }
+    file_put_contents(dirname(__FILE__).'/test.txt', 'post list ended' . PHP_EOL, FILE_APPEND);
 } else {
     file_put_contents(dirname(__FILE__).'/test.txt', 'paypal ipn NOT verified' . PHP_EOL, FILE_APPEND);
 }

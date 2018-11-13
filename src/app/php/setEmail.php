@@ -28,9 +28,12 @@ $messageBody  = 'A client has made a request for a reading.' . PHP_EOL . PHP_EOL
 $messageBody .= 'Click on the following link to provide the answer.' . PHP_EOL . PHP_EOL;
 $messageBody .= $href . 'admin?id=' . $LAST_ID;
 
-// ALTERNATE RECIPIENT 'emily-psychic@cfl.rr.com'
+$psychicEmailAddress = '';
+if ($psychicid === '001') { $psychicEmailAddress = 'emily-psychic@cfl.rr.com'; }
+if ($psychicid === '002') { $psychicEmailAddress = 'gpetron7@cfl.rr.com'; }
+
 mail(
-	'emily-psychic@cfl.rr.com',
+	$psychicEmailAddress,
 	'A client has made a request for a reading',
 	$messageBody,
 	'From: webmaster@jjtron.com'

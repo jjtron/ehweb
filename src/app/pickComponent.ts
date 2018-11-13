@@ -64,7 +64,7 @@ export class PickComponent implements AfterViewChecked {
         this.cardPickScale = (window.innerWidth > 451) ? 8 : 6;
         this.cardSpreadSizeFactor = this.cardPickScale / 4.6;
         route.params.subscribe((params) => {
-            this.psychicId = params.id || '000';
+            this.psychicId = params.psychicid || '000';
         });
     }
 
