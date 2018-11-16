@@ -1,3 +1,17 @@
+<?php
+require 'pdo.php';
+$query = "SELECT `ipn` FROM `records` WHERE id='" . $_GET['id'] . "'";
+
+foreach ($conn->query($query) as $row) {
+	$ipn = json_decode($row['ipn']);
+	if ($ipn) {
+		$status = $ipn->payment_status;
+	} else {
+		$status = 'Not yet in the payment process';
+	}
+}
+?>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
@@ -6,7 +20,8 @@
 	<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body style="background-color: #00f;">
-    
+
+<?php if ($status === 'Not yet in the payment process'): ?>
 <div style="width: 80%; margin: auto;">
 
     <div class="text-center" style="padding: 20px; color: #fff;">
@@ -42,5 +57,16 @@
 
 <p style="text-align: left;"></p>
 </div>
+
+<? elseif ($status === 'pre-ipn-processing'): ?>
+
+<div style="width: 80%; margin: auto; color: #fff;">In IPN Pre Process</div>
+
+<? else: ?>
+
+<div style="width: 80%; margin: auto; color: #fff;">Already Processed</div>
+  
+<? endif; ?>
+
 </body>
 </html>

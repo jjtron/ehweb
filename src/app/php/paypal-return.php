@@ -1,3 +1,12 @@
+<?php
+
+require 'pdo.php';
+$sql = "UPDATE records SET ipn = '" . json_encode(array('payment_status' => 'pre-ipn-processing')) . "' WHERE id=" . substr($_GET['cm'], 0, 2);
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+?>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">

@@ -17,17 +17,6 @@ export class Ajaxdata {
         }
     }
 
-    getCardGroup (): any {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            })
-        };
-        return this.http.post(
-            this.href + 'php/getCardGroup.php', null, httpOptions
-        );
-    }
-
     setEmail (email: string, cards: any, question: string, psychicid): any {
         const httpOptions = {
             headers: new HttpHeaders({
