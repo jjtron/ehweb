@@ -338,6 +338,9 @@ export class PickComponent implements AfterViewChecked {
                         let cntrRct = document.getElementById('centerRect');
                         let cntrRctParent = cntrRct.parentNode;
                         cntrRctParent.removeChild(cntrRct);
+                        let buttonsDiv = document.getElementById('shuffle-pick-buttons');
+                        let buttonsDivParent = buttonsDiv.parentNode;
+                        buttonsDivParent.removeChild(buttonsDiv);
                     }
                 }, 15);
             });
