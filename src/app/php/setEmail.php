@@ -36,7 +36,7 @@ mail(
 	$psychicEmailAddress,
 	'A client has made a request for a reading',
 	$messageBody,
-	'From: webmaster@jjtron.com'
+	'From: admin@jjtron.com'
 );
 
 echo json_encode($LAST_ID);

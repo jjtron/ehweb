@@ -44,7 +44,7 @@ mail(
 	$email,
 	'A response to your card reading request is ready',
 	$messageBody,
-	'From: webmaster@jjtron.com'
+	'From: admin@jjtron.com'
 );
 
 echo $respJSON;

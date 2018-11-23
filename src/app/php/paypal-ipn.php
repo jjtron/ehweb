@@ -25,7 +25,7 @@ if ($verified) {
 			$email,
 			'Here is your answer',
 			$messageBody,
-			'From: webmaster@jjtron.com'
+			'From: admin@jjtron.com'
 			);
 	
 } else {
