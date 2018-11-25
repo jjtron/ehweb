@@ -1,9 +1,24 @@
 <?php
 
-require 'pdo.php';
-$sql = "UPDATE records SET ipn = '" . json_encode(array('payment_status' => 'pre-ipn-processing')) . "' WHERE id=" . substr($_GET['cm'], 0, 2);
-$stmt = $conn->prepare($sql);
-$stmt->execute();
+    require 'pdo.php';
+    $sql = "UPDATE records SET ipn = '" . json_encode(array('payment_status' => 'pre-ipn-processing')) . "' WHERE id=" . substr($_GET['cm'], 0, 2);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+	$query = "SELECT `email`, `answer` FROM `records` WHERE id=" . substr($_GET['cm'], 0, 2);
+	foreach ($conn->query($query) as $row) {
+		$email = $row['email'];
+		$answer= $row['answer'];
+	}
+
+	$messageBody  = 'Here is your answer: ' . $answer . PHP_EOL;
+
+	mail(
+			$email,
+			'Here is your answer',
+			$messageBody,
+			'From: admin@jjtron.com'
+			);
 
 ?>
 

@@ -13,17 +13,15 @@ if ($verified) {
     $stmt = $conn->prepare($sql);
 	$stmt->execute();
 	
-	$query = "SELECT `email`, `answer` FROM `records` WHERE id=" . substr($_POST['custom'], 0, 2);
-	foreach ($conn->query($query) as $row) {
-		$email = $row['email'];
-		$answer= $row['answer'];
-	}
+    $psychicEmailAddress = '';
+    if (substr($_POST['custom'], 3) === '001') { $psychicEmailAddress = 'emily-psychic@cfl.rr.com'; }
+    if (substr($_POST['custom'], 3) === '002') { $psychicEmailAddress = 'gpetron7@cfl.rr.com'; }
 	
-	$messageBody  = 'Here is your answer: ' . $answer . PHP_EOL;
+	$messageBody  = 'Purchase on ' . substr($_POST['custom'], 0, 2);
 	
 	mail(
-			$email,
-			'Here is your answer',
+			$psychicEmailAddress,
+			'Purchase on record ' . substr($_POST['custom'], 0, 2),
 			$messageBody,
 			'From: admin@jjtron.com'
 			);
