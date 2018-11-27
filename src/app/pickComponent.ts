@@ -28,6 +28,7 @@ export class PickComponent implements AfterViewChecked {
     centerRect: any;
     cloningCard: any;
     email: string;
+    emailValid: boolean = false;
     gCenter: any;
     gCenterStatic: any;
     hostImages: string;
@@ -413,6 +414,9 @@ export class PickComponent implements AfterViewChecked {
                 this.questionPosted = true;
             }
         });
+    }
+    onChange(e) {
+        this.emailValid = /^.+@.+\.[a-z]{2,3}$/.test(this.email);
     }
     
     getCardUrlArray() {
