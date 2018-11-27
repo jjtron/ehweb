@@ -30,7 +30,7 @@ export const appRoutingProviders: any[] = [];
     RouterModule.forRoot(routes)
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: '/dist'},
+    {provide: APP_BASE_HREF, useValue: '/'},
     Ajaxdata,
     appRoutingProviders
   ],
