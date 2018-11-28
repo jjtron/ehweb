@@ -68,13 +68,26 @@ foreach ($conn->query($query) as $row) {
 <p style="text-align: left;"></p>
 </div>
 
-<? elseif ($status === 'pre-ipn-processing'): ?>
-
-<div style="width: 80%; margin: auto; color: #fff;">In IPN Pre Process</div>
-
 <? else: ?>
 
-<div style="width: 80%; margin: auto; color: #fff;">Already Processed</div>
+<div style="width: 80%; margin: auto;">
+    <div class="text-center" style="padding: 20px; color: #fff;">
+        <span style="display: inline-block; vertical-align: middle;">
+            <img id="logo-image-tag" src="../assets/Logo.png" width="100">
+        </span>
+        <span style="display: inline-block; vertical-align: middle;">
+            <div style="font-size: 30px;" id="title-tag">Psychic Cosmic Tarot</div>
+        </span>
+        <div class="row" style="padding: 20px; color: #fff;">
+            <div class="col-md-6 offset-md-3" style="font-size: 18px;">
+            		<p align="justify">This request has been processed.</p>
+            		<p align="justify">If you have not received an e-mail with the answer to your reading, please send e-mail to: <span style="color: yellow;">admin@jjtron.com</span></p>
+            		<p align="justify">Please reference this number in your inquiry: <span style="color: yellow;"><?php echo $_GET['id'] . '-' . $_GET['psychic'] ?></span></p>
+            		<p align="justify">Thanks you for your patience.</p>
+            </div>
+        </div>
+    </div>
+</div>
   
 <? endif; ?>
 
