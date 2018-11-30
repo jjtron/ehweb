@@ -27,8 +27,8 @@
 			</div>
 			<div style="text-align: left; padding: 1%; clear: left;">
 			<span>Answer/Analysis</span>
-	  			<textarea style="width: 100%;" id="answer" required rows="4" [(ngModel)]="answer"></textarea>
-	  			<button (click)="setAnswer()" [disabled]="answer.length < 3">Post Answer</button>
+	  			<textarea style="width: 100%;" id="answer" [disabled]="answerPosted" required rows="4" [(ngModel)]="answer"></textarea>
+	  			<button *ngIf="!answerPosted" (click)="setAnswer()" [disabled]="answer.length < 3">Post Answer</button>
 	  		</div>
 		  	<div *ngIf="answerPosted" ><h3>Your answer has been posted in response to the information above. The client has been notified.</h3></div>
 		  	<div *ngIf="problemOnPost" ><h3>{{problem}}</h3></div>

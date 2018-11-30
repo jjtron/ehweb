@@ -38,12 +38,13 @@
 		  	</div>
 	  	</div>
 		<div *ngIf="!questionPosted" style="margin: auto; width: 100%;">
-			<div style="text-align: left; padding: 10px; clear: left;">
+			<div style="text-align: left; padding-left: 10px; padding-bottom: 5px; clear: left;">
 		  		<span style="display: block;">Please enter your e-mail address.</span>
 		  		<input placeholder="email address" type="text" maxlength="50" style="width: 200px;" [(ngModel)]="email" (keyup)="onChange($event)" class="input-outline" />
 		  		<span>&nbsp;</span>
 		  		<button *ngIf="!questionPosted && emailValid" (click)="setEmail()" style="background-color: greenyellow; font-weight: bold;">Submit</button>
 		  	</div>
+		  	<div style="text-align: left; padding-left: 10px; font-size: 12px;">Your e-mail address is confidential. It will not be shared with or sold to any third party.</div>
 	  	</div>
 		<!-- visible after question is posted -->
 		<div *ngIf="questionPosted && question" style="margin: auto; width: 100%;">

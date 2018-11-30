@@ -50,6 +50,11 @@ export class AdminComponent {
                     });
                     this.preloadimages(arr);
                 }
+                if (resp.answer) {
+                    console.log('yes');
+                    this.answerPosted = true;
+                    this.answer = resp.answer;
+                }
             });
         });
     }

@@ -43,7 +43,8 @@ $messageBody .= PHP_EOL . PHP_EOL;
 $messageBody .= '100% accuracy is not guaranteed.' . PHP_EOL;
 $messageBody .= 'This service makes no representations or warranties of any kind, express or implied.' . PHP_EOL;
 $messageBody .= 'jjtron.com will not be liable for any damages arising from use of this site.' . PHP_EOL;
-$messageBody .= 'All divinatory readings and advice arising from use of this site are understood to be for entertainment purposes only.';
+$messageBody .= 'All divinatory readings and advice arising from use of this site are understood to be for entertainment purposes only.' . PHP_EOL;
+$messageBody .= 'Your e-mail address is confidential. It will not be shared with or sold to any third party.';
 
 mail(
 	$email,

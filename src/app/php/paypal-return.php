@@ -19,7 +19,8 @@
 	$messageBody .= '100% accuracy is not guaranteed.' . PHP_EOL;
 	$messageBody .= 'This service makes no representations or warranties of any kind, express or implied.' . PHP_EOL;
 	$messageBody .= 'jjtron.com will not be liable for any damages arising from use of this site.' . PHP_EOL;
-	$messageBody .= 'All divinatory readings and advice arising from use of this site are understood to be for entertainment purposes only.';
+	$messageBody .= 'All divinatory readings and advice arising from use of this site are understood to be for entertainment purposes only.' . PHP_EOL;
+	$messageBody .= 'Your e-mail address is confidential. It will not be shared with or sold to any third party.';
 	
 	mail(
 			$email,
@@ -50,10 +51,10 @@
         </span>
         <div class="row" style="padding: 20px; color: #fff;">
             <div class="col-md-6 offset-md-3" style="font-size: 18px;">
-            		<p align="justify">You will receive an e-mail soon with the answer to your tarot card reading request.</p>
-            		<p align="justify">It may take several minutes.</p>
-            		<p align="justify">Check your junk mail if it seems like it is taking too long.</p>
-            		<p align="justify">Thanks you for purchasing your card reading service. You are welcome any time to get another reading.</p>
+            		<p style="text-align:left">You will receive an e-mail soon with the answer to your tarot card reading request.</p>
+            		<p style="text-align:left">It may take several minutes.</p>
+            		<p style="text-align:left">Check your junk mail if it seems like it is taking too long.</p>
+            		<p style="text-align:left">Thanks you for purchasing your card reading service. You are welcome any time to get another reading.</p>
             </div>
         </div>
     </div>

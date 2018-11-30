@@ -80,10 +80,10 @@ foreach ($conn->query($query) as $row) {
         </span>
         <div class="row" style="padding: 20px; color: #fff;">
             <div class="col-md-6 offset-md-3" style="font-size: 18px;">
-            		<p align="justify">This request has been processed.</p>
-            		<p align="justify">If you have not received an e-mail with the answer to your reading, please send e-mail to: <span style="color: yellow;">admin@jjtron.com</span></p>
-            		<p align="justify">Please reference this number in your inquiry: <span style="color: yellow;"><?php echo $_GET['id'] . '-' . $_GET['psychic'] ?></span></p>
-            		<p align="justify">Thanks you for your patience.</p>
+            		<p style="text-align: left;">This request has been processed.</p>
+            		<p style="text-align: left;">If you have not received an e-mail with the answer to your reading, please send e-mail to: <span style="color: yellow;"><a href="mailto:admin@jjtron.com">admin@jjtron.com</a></span></p>
+            		<p style="text-align: left;">Please reference this number in your inquiry: <span style="color: yellow;"><?php echo $_GET['id'] . '-' . $_GET['psychic'] ?></span></p>
+            		<p style="text-align: left;">Thanks you for your patience.</p>
             </div>
         </div>
     </div>
