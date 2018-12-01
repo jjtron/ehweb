@@ -20,7 +20,7 @@ if ($verified) {
     if ($customData[1] === '001') { $psychicEmailAddress = 'emily-psychic@cfl.rr.com'; }
     if ($customData[1] === '002') { $psychicEmailAddress = 'gpetron7@cfl.rr.com'; }
 	
-    $messageBody  = 'Purchase on ' . $customData[0];
+    $messageBody  = 'A purchase has been completed on record # ' . $customData[0];
 	
 	mail(
 			$psychicEmailAddress,
