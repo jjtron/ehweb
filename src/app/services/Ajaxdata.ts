@@ -30,21 +30,21 @@ export class Ajaxdata {
         );
     }
 
-    setAnswer (answer: string, id: number, email: string): any {
+    setAnswer (answer: string, id: number, email: string, token: string): any {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             })
         };
         return this.http.post(
-            this.href + 'php/setAnswer.php', `answer=${answer}&id=${id}&email=${email}&href=${this.href}`,
+            this.href + 'php/setAnswer.php', `answer=${answer}&id=${id}&email=${email}&href=${this.href}&token=${token}`,
             httpOptions
         );
     }
 
-    getCardsQuestion (id: number): any {
+    getCardsQuestion (id: number, token: string): any {
         return this.http.get(
-            this.href + `php/getCardsQuestion.php?id=${id}`
+            this.href + `php/getCardsQuestion.php?id=${id}&token=${token}`
         );
     }
 }

@@ -54,6 +54,7 @@
             		<p style="text-align:left">You will receive an e-mail soon with the answer to your tarot card reading request.</p>
             		<p style="text-align:left">It may take several minutes.</p>
             		<p style="text-align:left">Check your junk mail if it seems like it is taking too long.</p>
+            		<p style="text-align:left">If it never arrives, email <span><a  style="color: yellow;" href="mailto:admin@jjtron.com">admin@jjtron.com</a></span></p>
             		<p style="text-align:left">Thanks you for purchasing your card reading service. You are welcome any time to get another reading.</p>
             </div>
         </div>

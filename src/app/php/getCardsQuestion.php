@@ -2,7 +2,7 @@
 
 require 'pdo.php';
 
-$query = "SELECT * FROM `records` WHERE id='" . $_GET['id'] . "'";
+$query = "SELECT * FROM `records` WHERE id='" . $_GET['id'] . "' AND admintoken='" . $_GET['token'] . "'";
 
 $obj = (object) array();
 foreach ($conn->query($query) as $row) {

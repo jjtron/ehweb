@@ -6,8 +6,9 @@ $answer = $_POST['answer'];
 $id = $_POST['id'];
 $email = $_POST['email'];
 $href = $_POST['href'];
+$token = $_POST['token'];
 
-$sql = "UPDATE records SET answer='" . $answer . "' WHERE id=" . $id;
+$sql = "UPDATE records SET answer='" . $answer . "' WHERE id=" . $id . " AND admintoken='" . $token . "'";
 
 try {
 	$stmt = $conn->prepare($sql);

@@ -21,6 +21,7 @@ export class AdminComponent {
     answer: string = '';
     email: string;
     id: number;
+    token: string;
     answerPosted: boolean = false;
     newImages: any[] = [];
     nLoadedImages: number = 0;
@@ -33,13 +34,14 @@ export class AdminComponent {
         this.hostImages = 'assets/';
         this.route.queryParams.subscribe((params: any) => {
             this.id = params.id;
+            this.token = params.token;
             let cardsObj = new Cards();
             let cards = cardsObj.cards;
             let cardDescriptions = {};
             cards.forEach((el: any) => {
                 cardDescriptions[el.file] = el.desc;
             });
-            this.ajaxData.getCardsQuestion(this.id).subscribe((resp: any) => {
+            this.ajaxData.getCardsQuestion(this.id, this.token).subscribe((resp: any) => {
                 this.cards = resp.cards;
                 this.question = resp.question;
                 this.email = resp.email;
@@ -62,7 +64,7 @@ export class AdminComponent {
     }
     
     setAnswer () {
-        this.ajaxData.setAnswer(this.answer, this.id, this.email).subscribe((resp: any) => {
+        this.ajaxData.setAnswer(this.answer, this.id, this.email, this.token).subscribe((resp: any) => {
             if (resp.success) {
                 this.answerPosted = true;
             } else {

@@ -38,14 +38,15 @@ foreach ($conn->query($query) as $row) {
 
     <div class="text-center" style="padding: 20px; color: #fff;">
         <span style="display: inline-block; vertical-align: middle;">
-            <img id="logo-image-tag" src="../assets/Logo.png" width="100">
+            <img id="logo-image-tag" src="../assets/Logo.png" width="50">
         </span>
         <span style="display: inline-block; vertical-align: middle;">
             <div style="font-size: 26px;" id="title-tag">Psychic Cosmic Tarot Pay-Pal Entry</div>
         </span>
-        <div class="row" style="padding: 20px; color: #fff;">
-            <div class="col-md-6 offset-md-3" style="font-size: 16px;">
+        <div class="row" style="padding: 5px; color: #fff;">
+            <div class="col-md-8 offset-md-2" style="font-size: 16px;">
                 <p id="text-to-show" align="justify">Your psychic reader has looked at your cards. Her full analysis is now ready for you to access. Click on the Pay Pal button below to see your future.</p>
+                <p style="font-size: 10px; text-align: left;">100% accuracy is not guaranteed. This service makes no representations or warranties of any kind, express or implied. jjtron.com will not be liable for any damages arising from use of this site. All divinatory readings and advice arising from use of this site are understood to be for entertainment purposes only.</p>
             </div>
         </div>
         <img id="spinner" src="../assets/spinner.gif" width="0" style="visibility: hidden;"/>
@@ -81,7 +82,7 @@ foreach ($conn->query($query) as $row) {
         <div class="row" style="padding: 20px; color: #fff;">
             <div class="col-md-6 offset-md-3" style="font-size: 18px;">
             		<p style="text-align: left;">This request has been processed.</p>
-            		<p style="text-align: left;">If you have not received an e-mail with the answer to your reading, please send e-mail to: <span style="color: yellow;"><a href="mailto:admin@jjtron.com">admin@jjtron.com</a></span></p>
+            		<p style="text-align: left;">If you have not received an e-mail with the answer to your reading, please send e-mail to: <span><a  style="color: yellow;" href="mailto:admin@jjtron.com">admin@jjtron.com</a></span></p>
             		<p style="text-align: left;">Please reference this number in your inquiry: <span style="color: yellow;"><?php echo $_GET['id'] . '-' . $_GET['psychic'] ?></span></p>
             		<p style="text-align: left;">Thanks you for your patience.</p>
             </div>

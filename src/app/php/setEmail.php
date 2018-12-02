@@ -8,11 +8,13 @@ $cards = $_POST['cards'];
 $question = $_POST['question'];
 $psychicid = $_POST['psychicid'];
 
+$admintoken = uniqid();
+
 if ($psychicid === '000') {
 	$psychicid = '002';
 }
 
-$sql = "INSERT INTO records (email, cards, question, answer, psychicid)  VALUES ('" . $email . "', '" .  $cards . "', '" . $question. "', '', '" . $psychicid. "')";
+$sql = "INSERT INTO records (email, cards, question, answer, psychicid, ipn, admintoken)  VALUES ('" . $email . "', '" .  $cards . "', '" . $question. "', '', '" . $psychicid. "', '', '" . $admintoken . "')";
 
 try {
 	$stmt = $conn->prepare($sql);
@@ -26,7 +28,7 @@ try {
 
 $messageBody  = 'A client has made a request for a reading.' . PHP_EOL . PHP_EOL;
 $messageBody .= 'Click on the following link to provide the answer.' . PHP_EOL . PHP_EOL;
-$messageBody .= $href . 'admin?id=' . $LAST_ID;
+$messageBody .= $href . 'admin?id=' . $LAST_ID . '&token=' . $admintoken;
 
 $psychicEmailAddress = '';
 if ($psychicid === '001') { $psychicEmailAddress = 'emily-psychic@cfl.rr.com'; }
