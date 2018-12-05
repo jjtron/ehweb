@@ -7,17 +7,19 @@ $email = $_POST['email'];
 $cards = $_POST['cards'];
 $question = $_POST['question'];
 $psychicid = $_POST['psychicid'];
-
 $admintoken = uniqid();
 
-if ($psychicid === '000') {
-	$psychicid = '002';
-}
-
-$sql = "INSERT INTO records (email, cards, question, answer, psychicid, ipn, admintoken)  VALUES ('" . $email . "', '" .  $cards . "', '" . $question. "', '', '" . $psychicid. "', '', '" . $admintoken . "')";
+if ($psychicid === '000') {	$psychicid = '002'; }
 
 try {
-	$stmt = $conn->prepare($sql);
+	$stmt = $conn->prepare("INSERT INTO records (email, cards, question, psychicid, admintoken) VALUES (:email, :cards, :question, :psychicid, :admintoken)");
+	
+	$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+	$stmt->bindParam(':cards', $cards, PDO::PARAM_STR);
+	$stmt->bindParam(':question', $question, PDO::PARAM_STR);
+	$stmt->bindParam(':psychicid', $psychicid, PDO::PARAM_STR);
+	$stmt->bindParam(':admintoken', $admintoken, PDO::PARAM_STR);
+	
 	$stmt->execute();
 	$LAST_ID = $conn->lastInsertId();
 	$msg = "The new record is created " . $LAST_ID;

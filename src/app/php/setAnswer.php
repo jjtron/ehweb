@@ -8,10 +8,11 @@ $email = $_POST['email'];
 $href = $_POST['href'];
 $token = $_POST['token'];
 
-$sql = "UPDATE records SET answer='" . $answer . "' WHERE id=" . $id . " AND admintoken='" . $token . "'";
-
 try {
-	$stmt = $conn->prepare($sql);
+	$stmt = $conn->prepare("UPDATE records SET answer=:answer WHERE id=:id AND admintoken=:token");
+	$stmt->bindParam(':answer', $answer, PDO::PARAM_STR);
+	$stmt->bindParam(':id', $id, PDO::PARAM_STR);
+	$stmt->bindParam(':token', $token, PDO::PARAM_STR);
 	$stmt->execute();
 } catch (Exception $e) {
 	$msg = $e->getMessage();

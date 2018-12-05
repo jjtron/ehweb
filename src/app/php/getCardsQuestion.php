@@ -2,19 +2,25 @@
 
 require 'pdo.php';
 
-$query = "SELECT * FROM `records` WHERE id='" . $_GET['id'] . "' AND admintoken='" . $_GET['token'] . "'";
+$stmt = $conn->prepare("SELECT * FROM `records` WHERE id=:id AND admintoken=:token");
+$stmt->bindParam(':id', $id);
+$stmt->bindParam(':token', $token);
+
+$id = $_GET['id'];
+$token = $_GET['token'];
 
 $obj = (object) array();
-foreach ($conn->query($query) as $row) {
 
-	$obj->cards = json_decode($row['cards']);
-	$obj->email = $row['email'];
-	$obj->question= $row['question'];
-	$obj->answer= $row['answer'];
-	$obj->id= $row['id'];
+$stmt->execute();
 
-	echo json_encode($obj);
-	break;
-}
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$obj->cards = json_decode($result['cards']);
+$obj->email = $result['email'];
+$obj->question= $result['question'];
+$obj->answer= $result['answer'];
+$obj->id= $result['id'];
+
+echo json_encode($obj);
 
 ?>
