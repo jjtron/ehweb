@@ -1,15 +1,19 @@
 <?php
 require 'pdo.php';
-$query = "SELECT `ipn` FROM `records` WHERE id='" . $_GET['id'] . "'";
 
-foreach ($conn->query($query) as $row) {
-	$ipn = json_decode($row['ipn']);
-	if ($ipn) {
-		$status = $ipn->payment_status;
-	} else {
-		$status = 'Not yet in the payment process';
-	}
+$stmt = $conn->prepare("SELECT `ipn` FROM `records` WHERE id=:id");
+$stmt->bindParam(':id', $id);
+$id = $_GET['id'];
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$ipn = json_decode($result['ipn']);
+if ($ipn) {
+	$status = $ipn->payment_status;
+} else {
+	$status = 'Not yet in the payment process';
 }
+
 ?>
 
 <html>

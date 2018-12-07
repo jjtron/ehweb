@@ -4,15 +4,17 @@
 
     $customData = explode("-", $_GET['cm']);
 
-    $sql = "UPDATE records SET ipn = '" . json_encode(array('payment_status' => 'pre-ipn-processing')) . "' WHERE id=" . $customData[0];
-    $stmt = $conn->prepare($sql);
+    $stmt = $conn->prepare("UPDATE records SET ipn=:ipn WHERE id=:id");
+    $stmt->bindParam(':id', $customData[0]);
+    $stmt->bindParam(':ipn', json_encode(array('payment_status' => 'pre-ipn-processing')));
     $stmt->execute();
 
-    $query = "SELECT `email`, `answer` FROM `records` WHERE id=" . $customData[0];
-	foreach ($conn->query($query) as $row) {
-		$email = $row['email'];
-		$answer= $row['answer'];
-	}
+    $stmt = $conn->prepare("SELECT `email`, `answer` FROM `records` WHERE id=:id");
+    $stmt->bindParam(':id', $customData[0]);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $email = $result['email'];
+    $answer= $result['answer'];
 
 	$messageBody  = 'Here is the answer to your tarot card reading request: '  . PHP_EOL . PHP_EOL . $answer . PHP_EOL;
 	$messageBody .= '------------------------------------------------------' . PHP_EOL . PHP_EOL;
