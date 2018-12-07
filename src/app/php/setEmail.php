@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $cards = $_POST['cards'];
 $question = $_POST['question'];
 $psychicid = $_POST['psychicid'];
-$admintoken = uniqid();
+$admintoken = bin2hex(random_bytes(16));
 
 if ($psychicid === '000') {	$psychicid = '002'; }
 
