@@ -11,7 +11,7 @@
 		</span>
 	</div>
 	<div *ngIf="!cardShuffleInProgress" id="shuffle-pick-buttons" style="height: 39px;">
-			<h4 style="margin: 0px;">Shuffle cards (optional), pick three</h4>
+			<h4 style="margin: 0px 0px 3px;">Shuffle deck (optional), pick 3</h4>
 			<button style="width: 70px;" (click)="startShuffleProcess()" [disabled]="buttonsDisabled">Shuffle</button>&nbsp;&nbsp;
 			<button style="width: 70px;" (click)="setUpCardPickLayout()" [disabled]="buttonsDisabled">Pick</button>
 	</div>
