@@ -14,7 +14,8 @@ if ($verified) {
 	
 	$stmt = $conn->prepare("UPDATE records SET ipn=:ipn WHERE id=:id");
 	$stmt->bindParam(':id', $customData[0]);
-	$stmt->bindParam(':ipn', json_encode($_POST));
+	$ipnfill = json_encode($_POST);
+	$stmt->bindParam(':ipn', $ipnfill);
 	$stmt->execute();
 	
     $psychicEmailAddress = '';

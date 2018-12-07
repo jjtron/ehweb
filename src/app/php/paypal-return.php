@@ -6,7 +6,8 @@
 
     $stmt = $conn->prepare("UPDATE records SET ipn=:ipn WHERE id=:id");
     $stmt->bindParam(':id', $customData[0]);
-    $stmt->bindParam(':ipn', json_encode(array('payment_status' => 'pre-ipn-processing')));
+    $ipnfill = json_encode(array('payment_status' => 'pre-ipn-processing'));
+    $stmt->bindParam(':ipn', $ipnfill);
     $stmt->execute();
 
     $stmt = $conn->prepare("SELECT `email`, `answer` FROM `records` WHERE id=:id");
