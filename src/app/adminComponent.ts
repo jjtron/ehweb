@@ -28,38 +28,45 @@ export class AdminComponent {
     logoImage: any;
     problemOnPost: boolean = false;
     problem: string;
+    tokenverified: boolean = false;
+    cardDescriptions: any = {};
+    norepsonse: boolean = false;
 
     constructor (private ajaxData: Ajaxdata, private route: ActivatedRoute) {
         this.href = ajaxData.href;
         this.hostImages = 'assets/';
         this.route.queryParams.subscribe((params: any) => {
             this.id = params.id;
-            this.token = params.token;
             let cardsObj = new Cards();
             let cards = cardsObj.cards;
-            let cardDescriptions = {};
+            this.cardDescriptions = {};
+            this.logoImage = new Image();
+            this.logoImage.src = this.hostImages + 'Logo.png';
             cards.forEach((el: any) => {
-                cardDescriptions[el.file] = el.desc;
+                this.cardDescriptions[el.file] = el.desc;
             });
-            this.ajaxData.getCardsQuestion(this.id, this.token).subscribe((resp: any) => {
-                this.cards = resp.cards;
-                this.question = resp.question;
-                this.email = resp.email;
-                this.logoImage = new Image();
-                this.logoImage.src = this.hostImages + 'Logo.png';
-                this.logoImage.onload = () => {
-                    let arr: any[] = [];
-                    this.cards.forEach((card) => {
-                        arr.push({ src: 'assets/' + card, desc: cardDescriptions[card] });
-                    });
-                    this.preloadimages(arr);
-                }
-                if (resp.answer) {
-                    console.log('yes');
-                    this.answerPosted = true;
-                    this.answer = resp.answer;
-                }
+        });
+    }
+    
+    getCardsQuestion() {
+        this.ajaxData.getCardsQuestion(this.id, this.token).subscribe((resp: any) => {
+            if (!resp.cards) {
+                this.norepsonse = true;
+                return;    
+            }
+            this.cards = resp.cards;
+            this.question = resp.question;
+            this.email = resp.email;
+            let arr: any[] = [];
+            this.cards.forEach((card) => {
+                arr.push({ src: 'assets/' + card, desc: this.cardDescriptions[card] });
             });
+            this.preloadimages(arr);
+            this.tokenverified = true;
+            if (resp.answer) {
+                this.answerPosted = true;
+                this.answer = resp.answer;
+            }
         });
     }
     
