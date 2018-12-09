@@ -5,7 +5,7 @@ require('PaypalIPN.php');
 use PaypalIPN;
 $ipn = new PaypalIPN();
 // Use the sandbox endpoint during testing.
-$ipn->useSandbox();
+// $ipn->useSandbox();
 $verified = $ipn->verifyIPN();
 
 if ($verified) {

@@ -1,17 +1,23 @@
 <?php
 require 'pdo.php';
 
-$stmt = $conn->prepare("SELECT `ipn` FROM `records` WHERE id=:id");
+$stmt = $conn->prepare("SELECT `ipn`, `answer` FROM `records` WHERE id=:id");
 $stmt->bindParam(':id', $id);
 $id = $_GET['id'];
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $ipn = json_decode($result['ipn']);
-if ($ipn) {
-	$status = $ipn->payment_status;
+if ($ipn && $result['answer']) {
+	$status = 'In the payment process';
+} else if (!$ipn && !$result['answer']) {
+	$status = 'Not yet ready for payment processing';
+} else if ($ipn && !$result['answer']) {
+	$status = 'Some kind of error';
+} else if (!$ipn && $result['answer']) {
+	$status = 'Ready for payment processing';
 } else {
-	$status = 'Not yet in the payment process';
+	$status = 'Some kind of error';
 }
 
 ?>
@@ -37,7 +43,7 @@ if ($ipn) {
 </head>
 <body style="background-color: #00f;">
 
-<?php if ($status === 'Not yet in the payment process'): ?>
+<?php if ($status === 'Ready for payment processing'): ?>
 <div style="width: 80%; margin: auto;">
 
     <div class="text-center" style="padding: 20px; color: #fff;">
@@ -73,7 +79,24 @@ if ($ipn) {
 <p style="text-align: left;"></p>
 </div>
 
-<? else: ?>
+<? elseif ($status === 'Not yet ready for payment processing'): ?>
+<div style="width: 80%; margin: auto;">
+    <div class="text-center" style="padding: 20px; color: #fff;">
+        <span style="display: inline-block; vertical-align: middle;">
+            <img id="logo-image-tag" src="../assets/Logo.png" width="100">
+        </span>
+        <span style="display: inline-block; vertical-align: middle;">
+            <div style="font-size: 30px;" id="title-tag">Psychic Cosmic Tarot</div>
+        </span>
+        <div class="row" style="padding: 20px; color: #fff;">
+            <div class="col-md-6 offset-md-3" style="font-size: 18px;">
+            		<p style="text-align: left;">Your request is not yet processable.</p>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<? elseif ($status === 'In the payment process'): ?>
 
 <div style="width: 80%; margin: auto;">
     <div class="text-center" style="padding: 20px; color: #fff;">
@@ -93,7 +116,28 @@ if ($ipn) {
         </div>
     </div>
 </div>
-  
+
+<? elseif ($status === 'Some kind of error'): ?>
+
+<div style="width: 80%; margin: auto;">
+    <div class="text-center" style="padding: 20px; color: #fff;">
+        <span style="display: inline-block; vertical-align: middle;">
+            <img id="logo-image-tag" src="../assets/Logo.png" width="100">
+        </span>
+        <span style="display: inline-block; vertical-align: middle;">
+            <div style="font-size: 30px;" id="title-tag">Psychic Cosmic Tarot</div>
+        </span>
+        <div class="row" style="padding: 20px; color: #fff;">
+            <div class="col-md-6 offset-md-3" style="font-size: 18px;">
+            		<p style="text-align: left;">An error has occured.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<? else: ?>
+
+
 <? endif; ?>
 
 </body>
