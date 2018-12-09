@@ -10,14 +10,34 @@
     $stmt->bindParam(':ipn', $ipnfill);
     $stmt->execute();
 
-    $stmt = $conn->prepare("SELECT `email`, `answer` FROM `records` WHERE id=:id");
+    $stmt = $conn->prepare("SELECT `email`, `answer`, `cards`, `question` FROM `records` WHERE id=:id");
     $stmt->bindParam(':id', $customData[0]);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $email = $result['email'];
-    $answer= $result['answer'];
-
-	$messageBody  = 'Here is the answer to your tarot card reading request: '  . PHP_EOL . PHP_EOL . $answer . PHP_EOL;
+    $answer = $result['answer'];
+    $cards = json_decode($result['cards']);
+    $question = $result['question'];
+    
+    $card1parts = explode('/', $cards[0]);
+    $card1grp =  ucwords(str_replace('-', ' ', $card1parts[0]));
+    $card1crd =  ucwords(substr(str_replace('-', ' ', $card1parts[1]), 0, -4));
+    
+    $card2parts = explode('/', $cards[1]);
+    $card2grp =  ucwords(str_replace('-', ' ', $card2parts[0]));
+    $card2crd =  ucwords(substr(str_replace('-', ' ', $card2parts[1]), 0, -4));
+    
+    $card3parts = explode('/', $cards[2]);
+    $card3grp =  ucwords(str_replace('-', ' ', $card3parts[0]));
+    $card3crd =  ucwords(substr(str_replace('-', ' ', $card3parts[1]), 0, -4));
+    
+    $messageBody = 'Your cards:' . PHP_EOL;
+    $messageBody .= '     ' . $card1grp . ' - ' . $card1crd . PHP_EOL;
+    $messageBody .= '     ' . $card2grp . ' - ' . $card2crd . PHP_EOL;
+    $messageBody .= '     ' . $card3grp . ' - ' . $card3crd . PHP_EOL . PHP_EOL;
+    $messageBody .= 'Your question:' . PHP_EOL;
+    $messageBody .= '     ' . $question . PHP_EOL . PHP_EOL;
+	$messageBody .= 'Here is the answer to your tarot card reading request: '  . PHP_EOL . PHP_EOL . $answer . PHP_EOL;
 	$messageBody .= '------------------------------------------------------' . PHP_EOL . PHP_EOL;
 	$messageBody .= '100% accuracy is not guaranteed.' . PHP_EOL;
 	$messageBody .= 'This service makes no representations or warranties of any kind, express or implied.' . PHP_EOL;

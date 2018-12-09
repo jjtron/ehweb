@@ -22,11 +22,27 @@ try {
 	return;
 }
 
-$psychicid = '';
 try {
-    $stmt2 = $conn->query("SELECT psychicid FROM records WHERE id=" . $id); 
-    $row = $stmt2->fetchObject();
-    $psychicid = $row->psychicid;
+	$stmt = $conn->prepare("SELECT psychicid, question, cards FROM records WHERE id=:id");
+	$stmt->bindParam(':id', $id, PDO::PARAM_STR);
+	$stmt->execute();
+	$result = $stmt->fetch(PDO::FETCH_ASSOC);
+	$question = $result['question'];
+	$psychicid = $result['psychicid'];
+	$cards = json_decode($result['cards']);
+
+	$card1parts = explode('/', $cards[0]);
+	$card1grp =  ucwords(str_replace('-', ' ', $card1parts[0]));
+	$card1crd =  ucwords(substr(str_replace('-', ' ', $card1parts[1]), 0, -4));
+
+	$card2parts = explode('/', $cards[1]);
+	$card2grp =  ucwords(str_replace('-', ' ', $card2parts[0]));
+	$card2crd =  ucwords(substr(str_replace('-', ' ', $card2parts[1]), 0, -4));
+
+	$card3parts = explode('/', $cards[2]);
+	$card3grp =  ucwords(str_replace('-', ' ', $card3parts[0]));
+	$card3crd =  ucwords(substr(str_replace('-', ' ', $card3parts[1]), 0, -4));
+
 } catch (Exception $e) {
 	$msg2 = $e->getMessage();
 	$resp2 = (object) array("success" => false, "msg" => $msg2);
@@ -39,7 +55,13 @@ $resp = (object) array("success" => true);
 $respJSON = json_encode($resp);
 
 $messageBody  = 'The answer to your card reading request is ready.' . PHP_EOL . PHP_EOL;
-$messageBody .= 'Click on the following link to get it.' . PHP_EOL . PHP_EOL;
+$messageBody .= 'Your cards:' . PHP_EOL;
+$messageBody .= '     ' . $card1grp . ' - ' . $card1crd . PHP_EOL;
+$messageBody .= '     ' . $card2grp . ' - ' . $card2crd . PHP_EOL;
+$messageBody .= '     ' . $card3grp . ' - ' . $card3crd . PHP_EOL . PHP_EOL;
+$messageBody .= 'Your question:' . PHP_EOL;
+$messageBody .= '     ' . $question . PHP_EOL . PHP_EOL;
+$messageBody .= 'Click on the following link to get you answer.' . PHP_EOL . PHP_EOL;
 $messageBody .= $href . 'php/pay-pal.php?id=' . $id . '&psychic=' . $psychicid;
 $messageBody .= PHP_EOL . PHP_EOL;
 $messageBody .= '100% accuracy is not guaranteed.' . PHP_EOL;
